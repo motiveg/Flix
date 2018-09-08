@@ -21,6 +21,15 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
     var refreshControl: UIRefreshControl!
     var searching = false
     
+    
+    @IBAction func hideKeyboard(_ sender: Any) {
+        //        if (searchBar.isFirstResponder) {
+        searchBar.endEditing(true)
+        //        } else {
+        //            view.endEditing(true)
+        //        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -37,6 +46,19 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
         tableView.dataSource = self
         
         fetchMovies()
+    }
+    
+    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        searchBar.resignFirstResponder()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        if let indexPath = tableView.indexPath(for: cell) {
+            let movie = movies[indexPath.row]
+            let detailViewController = segue.destination as! DetailViewController
+            detailViewController.movie = movie
+        }
     }
     
     func fetchMovies() {
@@ -122,9 +144,11 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
         return cell
     }
     
-    @IBAction func onTap(_ sender: Any) {
-        view.endEditing(true)
-    }
+    //    @IBAction func onTap(_ sender: Any) {
+    //        if (searchBar.isFirstResponder) {
+    //            view.endEditing(true)
+    //        }
+    //    }
     
     @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
         HUD.show(.progress)
