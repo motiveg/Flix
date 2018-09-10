@@ -21,20 +21,6 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
     var refreshControl: UIRefreshControl!
     var searching = false
     
-    
-    @IBAction func hideKeyboard(_ sender: Any) {
-        //        if (searchBar.isFirstResponder) {
-        searchBar.endEditing(true)
-        //        } else {
-        //            view.endEditing(true)
-        //        }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -48,8 +34,9 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
         fetchMovies()
     }
     
-    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
-        searchBar.resignFirstResponder()
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -89,7 +76,6 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
                 
                 let movies = dataDictionary["results"] as! [[String: Any]]
                 self.movies = movies
-                
                 self.tableView.reloadData()
                 HUD.flash(.success, delay: 0.35)
             }
@@ -144,12 +130,6 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
         return cell
     }
     
-    //    @IBAction func onTap(_ sender: Any) {
-    //        if (searchBar.isFirstResponder) {
-    //            view.endEditing(true)
-    //        }
-    //    }
-    
     @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
         HUD.show(.progress)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -183,6 +163,14 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
         filteredMovies.removeAll()
         view.endEditing(true)
         self.tableView.reloadData()
+    }
+    
+    @IBAction func hideKeyboard(_ sender: Any) {
+        searchBar.endEditing(true)
+    }
+    
+    @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        searchBar.resignFirstResponder()
     }
     
 }
