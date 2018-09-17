@@ -18,6 +18,16 @@ class DetailViewController: UIViewController {
     
     var movie: [String:Any]?
     
+    // TODO:
+    // - tap on poster
+    // - segue into new view
+    // - play movie trailer
+    @IBAction func didTapPoster(_ sender: UITapGestureRecognizer) {
+        //let location = sender.location(in: posterImageView)
+        //performSegue(withIdentifier: "firstSegue", sender: nil)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
