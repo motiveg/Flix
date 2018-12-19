@@ -13,15 +13,17 @@
         <!--Trailer-->
         <scene sceneID="X3C-be-P8o">
             <objects>
-                <viewController id="eBY-sY-2SN" customClass="TrailerViewController" customModule="Flix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="eBY-sY-2SN" customClass="TrailerViewController" customModule="Flix" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="amJ-Z0-syo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.28279446601428537" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="NWW-jf-WCB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Trailer" id="4Kc-YP-LZO">
-                        <barButtonItem key="backBarButtonItem" title=" " id="hJc-aA-1Ou"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="hJc-aA-1Ou">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5II-hC-7iX" userLabel="First Responder" sceneMemberID="firstResponder"/>

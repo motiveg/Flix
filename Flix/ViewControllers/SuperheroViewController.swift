@@ -10,31 +10,48 @@ import UIKit
 import PKHUD
 
 // TODO:
+// - double check constraints in horizontal orientation
+// - change needed size and constraints when switching orientation
 // - allow user to select genre
-// - dynamically set collection view cell size based on display
 
 class SuperheroViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
     var movies: [Movie] = []
     var refreshControl: UIRefreshControl!
+    
+    // CONSTANT VALUES //
+    let ACCENTCOLOR = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    let BORDERWIDTH = CGFloat(0.3)
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        // REFRESH CONTROL //
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(SuperheroViewController.didPullToRefresh(_:)), for: .valueChanged)
-        
+        self.refreshControl.tintColor = self.ACCENTCOLOR
         collectionView.insertSubview(refreshControl, at: 0)
+        
+        // COLLECTION VIEW //
         collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        // NAVIGATION BAR //
+        self.navigationController?.navigationBar.addBottomBorder(
+            borderColor: self.ACCENTCOLOR,
+            borderWidth: self.BORDERWIDTH,
+            navHeight: self.navigationController?.navigationBar.frame.height ?? 0.0
+        )
         
         self.fetchMovies()
     }
     
     func fetchMovies() {
-        
+        HUD.show(.progress)
         MovieApiManager().superheroMovies { (movies: [Movie]?, error: Error?) in
             if let movies = movies {
                 self.movies = movies
@@ -56,8 +73,7 @@ class SuperheroViewController: UIViewController {
     }
     
     @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
-        HUD.show(.progress)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
             self.fetchMovies()
             self.refreshControl.endRefreshing()
         }
@@ -87,5 +103,13 @@ extension SuperheroViewController: UICollectionViewDataSource {
             cell.posterImageView.af_setImage(withURL: movie.posterURL!)
         }
         return cell
+    }
+}
+
+extension SuperheroViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (self.view.frame.width / 2.0) - 1.0
+        let height = width * 1.5
+        return CGSize(width: width, height: height)
     }
 }

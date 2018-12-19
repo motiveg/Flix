@@ -16,9 +16,6 @@ class MovieCell: UITableViewCell {
     
     var movie: Movie! {
         willSet(newMovie) {
-            
-            print("New movie properties are about to be set.")
-            
             titleLabel.text = newMovie.title
             overviewLabel.text = newMovie.overview
             
@@ -30,7 +27,10 @@ class MovieCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.posterImageView.layer.cornerRadius = 3.0
+        self.posterImageView.layer.masksToBounds = true
+        self.posterImageView.layer.borderWidth = 0.3
+        self.posterImageView.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

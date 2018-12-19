@@ -82,14 +82,31 @@ class MovieApiManager {
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let task = session.dataTask(with: request) { (data, response, error) in
             if let data = data {
-                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                let results = dataDictionary["results"] as! [[String: Any]]
-                let firstVideoDictionary = results[0]
-                let videoKey = firstVideoDictionary["key"] as! String
-                let youtubeBase = "https://www.youtube.com/watch?v="
-                let videoURL = URL(string: youtubeBase + videoKey)
+                var trailerURL = URL(string: "")
                 
-                completion(videoURL, nil)
+                // attempt to get data dictionary
+                if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    
+                    // attempt to get video results
+                    if let results = dataDictionary["results"] as? [[String: Any]] {
+                        
+                        // check if there are any results
+                        if results.count > 0 {
+                            let firstVideoDictionary = results[0]
+                            let site = firstVideoDictionary["site"] as? String ?? ""
+                            
+                            // get youtube url if it exists
+                            if site == "YouTube" {
+                                let videoKey = firstVideoDictionary["key"] as! String
+                                let youtubeBase = "https://www.youtube.com/watch?v="
+                                let videoURL = URL(string: youtubeBase + videoKey)
+                                trailerURL = videoURL
+                            }
+                        }
+                    }
+                }
+                
+                completion(trailerURL, nil)
             } else {
                 completion(nil, error)
             }

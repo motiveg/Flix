@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mio-Du-ih1">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -13,14 +13,14 @@
         <!--Superhero Scene View Controller-->
         <scene sceneID="PBp-Dr-iOW">
             <objects>
-                <viewController storyboardIdentifier="UIViewController-Mio-Du-ih1" title="Superhero Scene View Controller" id="Mio-Du-ih1" customClass="SuperheroViewController" customModule="Flix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UIViewController-Mio-Du-ih1" title="Superhero Scene View Controller" extendedLayoutIncludesOpaqueBars="YES" id="Mio-Du-ih1" customClass="SuperheroViewController" customModule="Flix" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9yL-jG-6uJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jZQ-3C-GQ8">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" red="0.0" green="0.28279446601428537" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="y90-SG-NQ0">
                                     <size key="itemSize" width="159" height="239"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -54,7 +54,7 @@
                                 </cells>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="jZQ-3C-GQ8" firstAttribute="bottom" secondItem="HIh-7X-0qF" secondAttribute="bottom" id="VVl-Ig-kTc"/>
                             <constraint firstItem="jZQ-3C-GQ8" firstAttribute="trailing" secondItem="HIh-7X-0qF" secondAttribute="trailing" id="c7l-fS-gwx"/>
@@ -63,8 +63,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HIh-7X-0qF"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="Superhero" id="H3g-m5-ErY">
-                        <barButtonItem key="backBarButtonItem" title=" " id="ng1-T7-JQ5"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="ng1-T7-JQ5">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="jZQ-3C-GQ8" id="8ZA-4s-07H"/>

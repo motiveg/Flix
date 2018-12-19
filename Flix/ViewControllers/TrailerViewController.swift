@@ -10,6 +10,9 @@ import UIKit
 import WebKit
 import PKHUD
 
+// TODO:
+// - allow webview to change size and constraints when switching orientation
+
 class TrailerViewController: UIViewController {
     
     var wkconfig = WKWebViewConfiguration()
@@ -42,7 +45,7 @@ class TrailerViewController: UIViewController {
                 
                 // Pop up alert upon (network) error
                 // Source: https://www.ioscreator.com/tutorials/display-alert-ios-tutorial-ios10
-                let alertController = UIAlertController(title: "Error", message:
+                let alertController = UIAlertController(title: "Error retrieving movie trailer", message:
                     error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default,handler: nil))
                 self.present(alertController, animated: true, completion: nil)
@@ -67,6 +70,11 @@ class TrailerViewController: UIViewController {
             ),
         configuration: wkconfig
         )
+        
+        //let backgroundView = UIView()
+        //backgroundView.backgroundColor = #colorLiteral(red: 0, green: 0.282794466, blue: 0.5, alpha: 1)
+        trailerView.backgroundColor = #colorLiteral(red: 0, green: 0.282794466, blue: 0.5, alpha: 1)
+        trailerView.isOpaque = false
         
         view.addSubview(trailerView)
         let youtubeRequest = URLRequest(url: trailerURL)
