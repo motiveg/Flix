@@ -8,6 +8,11 @@
 
 import UIKit
 
+// TODO:
+// - increase font size depending on display
+// - use text field for description in case of long descriptions
+// - beautify
+
 class DetailViewController: UIViewController {
     
     @IBOutlet weak var backDropImageView: UIImageView!
@@ -16,42 +21,29 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     
-    var movie: [String:Any]?
-    
-    // TODO:
-    // - tap on poster
-    // - segue into new view
-    // - play movie trailer
-    @IBAction func didTapPoster(_ sender: UITapGestureRecognizer) {
-        //let location = sender.location(in: posterImageView)
-        //performSegue(withIdentifier: "firstSegue", sender: nil)
-    }
-    
+    var movie: Movie?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if let movie = movie {
-            titleLabel.text = movie["title"] as? String
-            releaseDateLabel.text = movie["release_date"] as? String
-            overviewLabel.text = movie["overview"] as? String
-            let backdropPathString = movie["backdrop_path"] as! String
-            let posterPathString = movie["poster_path"] as! String
-            let baseURLString = "https://image.tmdb.org/t/p/w500"
+            titleLabel.text = movie.title
+            releaseDateLabel.text = movie.releaseDate
+            overviewLabel.text = movie.overview as String
             
-            let backdropURL = URL(string: baseURLString + backdropPathString)!
-            backDropImageView.af_setImage(withURL: backdropURL)
+            if movie.posterURL != nil {
+                posterImageView.af_setImage(withURL: movie.posterURL!)
+            }
             
-            let posterPathURL = URL(string: baseURLString + posterPathString)!
-            posterImageView.af_setImage(withURL: posterPathURL)
+            if movie.backdropURL != nil {
+                backDropImageView.af_setImage(withURL: movie.backdropURL!)
+            }
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! TrailerViewController
+        vc.movieId = self.movie?.id
     }
     
-    
-
 }

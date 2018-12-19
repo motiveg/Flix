@@ -14,6 +14,20 @@ class MovieCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     
+    var movie: Movie! {
+        willSet(newMovie) {
+            
+            print("New movie properties are about to be set.")
+            
+            titleLabel.text = newMovie.title
+            overviewLabel.text = newMovie.overview
+            
+            if newMovie.posterURL != nil {
+                posterImageView.af_setImage(withURL: newMovie.posterURL!)
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

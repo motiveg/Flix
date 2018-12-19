@@ -10,126 +10,66 @@ import UIKit
 import AlamofireImage
 import PKHUD
 
-class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
+// TODO:
+// - increase font size depending on display
+// - add sorting and filtering
+
+class NowPlayingViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var movies: [[String: Any]] = []
-    var filteredMovies: [[String: Any]] = []
+    var unfilteredMovies: [Movie] = []
+    var displayedMovies: [Movie] = []
     var refreshControl: UIRefreshControl!
-    var searching = false
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(NowPlayingViewController.didPullToRefresh(_:)), for: .valueChanged)
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.addTarget(self, action: #selector(NowPlayingViewController.didPullToRefresh(_:)), for: .valueChanged)
         
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 50
-        tableView.insertSubview(refreshControl, at: 0)
-        tableView.dataSource = self
+        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = 50
+        self.tableView.insertSubview(refreshControl, at: 0)
+        self.tableView.dataSource = self
         
-        fetchMovies()
+        self.fetchMovies()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as! UITableViewCell
-        if let indexPath = tableView.indexPath(for: cell) {
-            let movie = movies[indexPath.row]
-            let detailViewController = segue.destination as! DetailViewController
-            detailViewController.movie = movie
+    override func viewDidAppear(_ animated: Bool) {
+        if let index = self.tableView.indexPathForSelectedRow {
+            self.tableView.deselectRow(at: index, animated: true)
         }
     }
     
     func fetchMovies() {
         
-        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a6b37c5a69c374b9b6b793763d8f959b")!
-        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-        let task = session.dataTask(with: request) { (data, response, error) in
-            // This will run when the network request returns
-            if let error = error {
+        MovieApiManager().nowPlayingMovies { (movies: [Movie]?, error: Error?) in
+            if let movies = movies {
+                self.unfilteredMovies = movies
+                
+                // apply filters
+                let filteredMovies = Movie.filterMovies(searchString: self.searchBar.text!, movies: self.unfilteredMovies)
+                self.displayedMovies = filteredMovies
+                
+                self.tableView.reloadData()
+                HUD.flash(.success, delay: 0.35)
+            } else {
                 self.refreshControl.endRefreshing()
                 HUD.hide()
                 
                 // Pop up alert upon (network) error
                 // Source: https://www.ioscreator.com/tutorials/display-alert-ios-tutorial-ios10
                 let alertController = UIAlertController(title: "Error", message:
-                    error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+                    error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default,handler: nil))
                 self.present(alertController, animated: true, completion: nil)
-                
-                print(error.localizedDescription)
-                
-            } else if let data = data {
-                
-                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                
-                print (dataDictionary)
-                
-                let movies = dataDictionary["results"] as! [[String: Any]]
-                self.movies = movies
-                self.tableView.reloadData()
-                HUD.flash(.success, delay: 0.35)
             }
         }
-        task.resume()
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if (searching && !filteredMovies.isEmpty) {
-            print(filteredMovies.count)
-            return filteredMovies.count
-        } else {
-            print(movies.count)
-            return movies.count
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        var movie = [String: Any]()
-        
-        if (searching && !filteredMovies.isEmpty) {
-            movie = filteredMovies[indexPath.row]
-        } else {
-            movie = movies[indexPath.row]
-        }
-        
-        let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
-        
-        // use a default image before trying to get the poster image
-        let defaultImageString = "https://raw.githubusercontent.com/motiveg/Flix/master/ImageNotLoaded.png"
-        let defaultImageURL = URL(string: defaultImageString)!
-        cell.titleLabel.text = title
-        cell.overviewLabel.text = overview
-        cell.posterImageView.af_setImage(withURL: defaultImageURL)
-        
-        let posterPathString = movie["poster_path"] as! String
-        
-        // use low quality, 92px, size poster first
-        let baseLQURLString = "https://image.tmdb.org/t/p/w92"
-        let posterLQURL = URL(string: baseLQURLString)!
-        cell.posterImageView.af_setImage(withURL: posterLQURL)
-        
-        // use 500px after
-        let baseURLString = "https://image.tmdb.org/t/p/w500"
-        let posterURL = URL(string: baseURLString + posterPathString)!
-        cell.posterImageView.af_setImage(withURL: posterURL)
-        
-        return cell
     }
     
     @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
@@ -140,40 +80,51 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UISearc
         }
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if (searchBar.text != "") {
-            if !(filteredMovies.isEmpty) {
-                filteredMovies.removeAll()
-            }
-            for movie in movies {
-                let title = movie["title"] as! String
-                let searchText: String = searchBar.text!
-                if (title.lowercased().contains(searchText.lowercased())) {
-                    filteredMovies.append(movie)
-                }
-            }
-            searching = true
-        } else {
-            searching = false
-        }
-        self.tableView.reloadData()
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = ""
-        searching = false
-        filteredMovies.removeAll()
-        view.endEditing(true)
-        self.tableView.reloadData()
-    }
-    
     @IBAction func hideKeyboard(_ sender: Any) {
-        searchBar.endEditing(true)
+        self.searchBar.endEditing(true)
     }
     
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
-        searchBar.resignFirstResponder()
+        self.searchBar.resignFirstResponder()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        if let indexPath = self.tableView.indexPath(for: cell) {
+            let movie = self.displayedMovies[indexPath.row]
+            let detailViewController = segue.destination as! DetailViewController
+            detailViewController.movie = movie
+        }
     }
     
 }
 
+extension NowPlayingViewController: UISearchBarDelegate {}
+
+extension NowPlayingViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.displayedMovies.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        let movie = self.displayedMovies[indexPath.row]
+        cell.movie = movie
+        return cell
+    }
+}
+
+extension NowPlayingViewController {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let filteredMovies = Movie.filterMovies(searchString: self.searchBar.text!, movies: self.unfilteredMovies)
+        self.displayedMovies = filteredMovies
+        self.tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar.text = ""
+        self.view.endEditing(true)
+        self.displayedMovies = self.unfilteredMovies
+        self.tableView.reloadData()
+    }
+}

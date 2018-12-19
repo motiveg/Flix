@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RLg-kc-CnR">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Popular Scene View Controller-->
+        <scene sceneID="2hU-7t-afL">
+            <objects>
+                <viewController storyboardIdentifier="UIViewController-RLg-kc-CnR" title="Popular Scene View Controller" id="RLg-kc-CnR" customClass="PopularViewController" customModule="Flix" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ixZ-Jv-6tk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Vo-zu-EzE">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="dhf-bo-21c">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="barTintColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="5Vo-zu-EzE" id="9QL-yZ-dHQ"/>
+                                    </connections>
+                                </searchBar>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="180" id="Kxz-HJ-fSZ" customClass="MovieCell" customModule="Flix" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="180"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kxz-HJ-fSZ" id="Ns5-7g-nSU">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="179.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fbd-rZ-vPB">
+                                                    <rect key="frame" x="8" y="8" width="98" height="157"/>
+                                                    <color key="backgroundColor" red="0.47684186699999997" green="0.50480759139999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="157" id="3a7-dS-qVD"/>
+                                                        <constraint firstAttribute="width" constant="98" id="HTH-zU-hKC"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crazy Rich Asians" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cna-IE-7yG">
+                                                    <rect key="frame" x="114" y="8" width="253" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7X-SW-pTs">
+                                                    <rect key="frame" x="114" y="30.5" width="246" height="72"/>
+                                                    <string key="text">An American-born Chinese economics professor accompanies her boyfriend to Singapore for his best friend's wedding, only to get thrust into the lives of Asia's rich and famous.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fbd-rZ-vPB" secondAttribute="bottom" constant="8" id="7U1-Kw-2KF"/>
+                                                <constraint firstItem="fbd-rZ-vPB" firstAttribute="top" secondItem="Ns5-7g-nSU" secondAttribute="top" constant="8" id="IBm-Qv-lcL"/>
+                                                <constraint firstItem="Cna-IE-7yG" firstAttribute="top" secondItem="fbd-rZ-vPB" secondAttribute="top" id="Iqt-JS-JBM"/>
+                                                <constraint firstItem="U7X-SW-pTs" firstAttribute="leading" secondItem="fbd-rZ-vPB" secondAttribute="trailing" constant="8" id="N17-9R-f1H"/>
+                                                <constraint firstItem="fbd-rZ-vPB" firstAttribute="leading" secondItem="Ns5-7g-nSU" secondAttribute="leading" constant="8" id="Uq5-WB-4eQ"/>
+                                                <constraint firstItem="Cna-IE-7yG" firstAttribute="leading" secondItem="fbd-rZ-vPB" secondAttribute="trailing" constant="8" id="chK-zA-2s2"/>
+                                                <constraint firstItem="U7X-SW-pTs" firstAttribute="top" secondItem="Cna-IE-7yG" secondAttribute="bottom" constant="8" id="dgq-J8-FB1"/>
+                                                <constraint firstAttribute="trailing" secondItem="Cna-IE-7yG" secondAttribute="trailing" constant="8" id="gRt-Rv-uZf"/>
+                                                <constraint firstItem="U7X-SW-pTs" firstAttribute="leading" secondItem="Cna-IE-7yG" secondAttribute="leading" id="jYj-0m-wgi"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="U7X-SW-pTs" secondAttribute="bottom" constant="8" id="vtQ-16-qai"/>
+                                                <constraint firstAttribute="trailing" secondItem="U7X-SW-pTs" secondAttribute="trailing" constant="15" id="xEd-wB-oG1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="overviewLabel" destination="U7X-SW-pTs" id="BBU-YQ-4f0"/>
+                                            <outlet property="posterImageView" destination="fbd-rZ-vPB" id="UWq-OS-a8q"/>
+                                            <outlet property="titleLabel" destination="Cna-IE-7yG" id="o50-nH-SeK"/>
+                                            <segue destination="1ov-ks-qio" kind="show" identifier="DetailSegue" id="sLK-64-wDy"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="RLg-kc-CnR" id="dmC-UZ-A8Z"/>
+                                    <outlet property="delegate" destination="RLg-kc-CnR" id="dXK-kv-TvX"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5Vo-zu-EzE" firstAttribute="leading" secondItem="G0F-7k-6eB" secondAttribute="leading" id="0WZ-To-sVd"/>
+                            <constraint firstItem="5Vo-zu-EzE" firstAttribute="top" secondItem="ixZ-Jv-6tk" secondAttribute="top" id="FcZ-s6-dL5"/>
+                            <constraint firstAttribute="bottom" secondItem="5Vo-zu-EzE" secondAttribute="bottom" id="JjN-0w-oCg"/>
+                            <constraint firstItem="5Vo-zu-EzE" firstAttribute="trailing" secondItem="G0F-7k-6eB" secondAttribute="trailing" id="ToS-gX-S1F"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="G0F-7k-6eB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Popular" id="Bpv-IJ-0Nq">
+                        <barButtonItem key="backBarButtonItem" title=" " id="mgz-bh-T1o"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="dhf-bo-21c" id="AGS-2w-UXb"/>
+                        <outlet property="tableView" destination="5Vo-zu-EzE" id="Zx7-sl-V8x"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5mp-us-ykc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Za7-8i-eJ4">
+                    <connections>
+                        <action selector="hideKeyboard:" destination="RLg-kc-CnR" id="xik-W9-u2L"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2319" y="35"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="ZdX-Ww-uAR">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="UIViewController-WQy-D5-08C" storyboardName="Detail" id="1ov-ks-qio" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RnZ-we-FSa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2992.5" y="34.859154929577464"/>
+        </scene>
+    </scenes>
+</document>

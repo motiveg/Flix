@@ -65,9 +65,9 @@ I also had a lot of trouble with the search functionality. I don't have a lot of
 
 ----
 
-# Project 2 - *Name of App Here*
+# Project 2 - *Flix*
 
-**Name of your app** is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
+**Flix** is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
 Time spent: **5** hours spent in total
 
@@ -188,37 +188,39 @@ This lab was fairly straightforward. I am mostly unsure about how to access the 
 
 **Flix** is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **X** hours spent in total
+Time spent: **7** hours spent in total
 
 ## User Stories
 
 The following **required** user stories are complete:
 
-- [ ] Create a movie model (+2pt)
-- [ ] Implement the movie model (+2pt)
-- [ ] Implement property observers (+2pt)
-- [ ] Create a basic API Client (+2pt)
+- [x] Create a movie model (+2pt)
+- [x] Implement the movie model (+2pt)
+- [x] Implement property observers (+2pt)
+- [x] Create a basic API Client (+2pt)
 
 The following **additional** user stories are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality! (+1-3pts)
+- [x] Made a function and tab for Popular Movies.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. Turn the "fetch movie" functions into one functions and just specify what type of movies to fetch.
+2. Or, somehow reuse the statements in the "fetch movie" functions so they aren't repeated.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/motiveg/Flix/raw/master/FlixDemo4.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+It took a little time trying to rearrange my code so that it still worked the way I originally intended; the new code made everything more readable but I needed to figure out where to put some of the old code to maintain some kind of encapsulation (at least more encapsulation than the previous code).
+
+I also had to review back a little bit to get my Popular Movies tab working like my Now Playing tab.
 
 ## License
 

@@ -1,8 +1,8 @@
 PODS:
-  - Alamofire (4.7.3)
-  - AlamofireImage (3.3.1):
-    - Alamofire (~> 4.5)
-  - PKHUD (5.1.0)
+  - Alamofire (4.8.0)
+  - AlamofireImage (3.5.0):
+    - Alamofire (~> 4.8)
+  - PKHUD (5.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
@@ -16,9 +16,9 @@ SPEC REPOS:
     - PKHUD
 
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
-  PKHUD: 62ea46a1e88c4def1da784878d199bb54c841e3c
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
+  PKHUD: dd5357ac65f26115c35c4a68e9b328053326c5fe
 
 PODFILE CHECKSUM: 90f8c21ffd5d6e3eec655cd6d08536c07dde33f2
 
