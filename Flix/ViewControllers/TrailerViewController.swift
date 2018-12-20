@@ -17,6 +17,7 @@ class TrailerViewController: UIViewController {
     
     var wkconfig = WKWebViewConfiguration()
     var movieId: Int?
+    var titleQuery: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,14 +34,28 @@ class TrailerViewController: UIViewController {
     
     func fetchMovieTrailer() {
         guard let movieId = self.movieId else { return }
-        MovieApiManager().videoTrailer(movieId: movieId) { (url: URL?, error: Error?) in
+        MovieApiManager().videoTrailer(movieId: movieId, queryURL: titleQuery!) { (url: URL?, error: Error?) in
             HUD.show(.progress)
             if let url = url {
-                self.setUpWebView(trailerURL: url)
-                HUD.flash(.success, delay: 0.35)
+                if error != nil {
+                    print("Error: \(error?.localizedDescription ?? "")")
+                    self.setUpWebView(trailerURL: url)
+                    HUD.hide()
+                    
+                    // Pop up alert upon (network) error
+                    // Source: https://www.ioscreator.com/tutorials/display-alert-ios-tutorial-ios10
+                    let alertController = UIAlertController(title: "Error", message:
+                        error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default,handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                else {
+                    self.setUpWebView(trailerURL: url)
+                    HUD.flash(.success, delay: 0.35)
+                }
             }
             else {
-                print("Error fetching trailer url: \(error.debugDescription)")
+                print("Error: \(error.debugDescription)")
                 HUD.hide()
                 
                 // Pop up alert upon (network) error

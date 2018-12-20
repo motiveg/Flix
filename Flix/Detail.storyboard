@@ -30,7 +30,7 @@
                                         <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LCD-5o-3do">
-                                        <rect key="frame" x="16" y="147.5" width="90" height="150"/>
+                                        <rect key="frame" x="16" y="169.5" width="90" height="150"/>
                                         <color key="backgroundColor" red="0.47684186699999997" green="0.50480759139999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -41,26 +41,20 @@
                                             <outletCollection property="gestureRecognizers" destination="U8a-do-Et3" appends="YES" id="cPi-XT-dU1"/>
                                         </connections>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crazy Rich Asians" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4i-2b-BT8">
-                                        <rect key="frame" x="114" y="230.5" width="245" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Crazy Rich Asians" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4i-2b-BT8">
+                                        <rect key="frame" x="114" y="230.5" width="139" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYb-ls-68o">
-                                        <rect key="frame" x="114" y="259" width="245" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6eo-ji-hia">
-                                        <rect key="frame" x="16" y="305.5" width="343" height="14.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Release Date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYb-ls-68o">
+                                        <rect key="frame" x="114" y="258" width="86.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2D-Jk-Grv">
-                                        <rect key="frame" x="16" y="148" width="90" height="150"/>
+                                        <rect key="frame" x="16" y="170" width="90" height="150"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" id="ByV-ZY-jnF"/>
                                             <constraint firstAttribute="width" constant="90" id="h1k-30-U8c"/>
@@ -69,29 +63,39 @@
                                             <segue destination="MdU-id-7g1" kind="show" identifier="TrailerSegue" id="soR-kU-3Te"/>
                                         </connections>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9T-BB-gmV">
+                                        <rect key="frame" x="16" y="327.5" width="343" height="331.5"/>
+                                        <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.28279446601428537" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="6eo-ji-hia" secondAttribute="trailing" constant="16" id="01a-jk-9d9"/>
                                     <constraint firstItem="BYb-ls-68o" firstAttribute="leading" secondItem="LCD-5o-3do" secondAttribute="trailing" constant="8" id="4CJ-kV-UGt"/>
                                     <constraint firstItem="g4i-2b-BT8" firstAttribute="top" secondItem="fR0-zI-zXY" secondAttribute="bottom" constant="8" id="7iU-u2-Ggo"/>
-                                    <constraint firstItem="6eo-ji-hia" firstAttribute="top" secondItem="LCD-5o-3do" secondAttribute="bottom" constant="8" id="88f-Po-jMe"/>
-                                    <constraint firstItem="6eo-ji-hia" firstAttribute="top" secondItem="h2D-Jk-Grv" secondAttribute="bottom" constant="7.5" id="8hZ-bB-fQJ"/>
+                                    <constraint firstItem="n9T-BB-gmV" firstAttribute="top" secondItem="LCD-5o-3do" secondAttribute="bottom" constant="8" id="8Rg-Ir-UHW"/>
                                     <constraint firstItem="fR0-zI-zXY" firstAttribute="top" secondItem="eC1-SO-STP" secondAttribute="top" id="B4A-ui-Jrs"/>
                                     <constraint firstItem="g4i-2b-BT8" firstAttribute="leading" secondItem="h2D-Jk-Grv" secondAttribute="trailing" constant="8" id="D0L-hO-RBV"/>
-                                    <constraint firstAttribute="trailing" secondItem="g4i-2b-BT8" secondAttribute="trailing" constant="16" id="GxH-dq-rnN"/>
-                                    <constraint firstItem="LCD-5o-3do" firstAttribute="centerY" secondItem="fR0-zI-zXY" secondAttribute="bottom" id="KqJ-7y-kij"/>
+                                    <constraint firstItem="n9T-BB-gmV" firstAttribute="top" secondItem="h2D-Jk-Grv" secondAttribute="bottom" constant="7.5" id="EXt-1y-bj9"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="g4i-2b-BT8" secondAttribute="trailing" constant="16" id="GxH-dq-rnN"/>
+                                    <constraint firstAttribute="bottom" secondItem="n9T-BB-gmV" secondAttribute="bottom" constant="8" id="KDW-GT-ihz"/>
+                                    <constraint firstItem="LCD-5o-3do" firstAttribute="centerY" secondItem="fR0-zI-zXY" secondAttribute="bottom" multiplier="1.1" id="KqJ-7y-kij"/>
+                                    <constraint firstItem="n9T-BB-gmV" firstAttribute="top" relation="greaterThanOrEqual" secondItem="BYb-ls-68o" secondAttribute="bottom" constant="8" id="M5i-gd-cV4"/>
                                     <constraint firstItem="g4i-2b-BT8" firstAttribute="leading" secondItem="LCD-5o-3do" secondAttribute="trailing" constant="8" id="OSb-06-Iw4"/>
-                                    <constraint firstItem="6eo-ji-hia" firstAttribute="leading" secondItem="eC1-SO-STP" secondAttribute="leading" constant="16" id="SpM-MO-wId"/>
                                     <constraint firstItem="BYb-ls-68o" firstAttribute="top" secondItem="g4i-2b-BT8" secondAttribute="bottom" constant="8" id="Xz9-bB-mCU"/>
                                     <constraint firstItem="LCD-5o-3do" firstAttribute="leading" secondItem="eC1-SO-STP" secondAttribute="leading" constant="16" id="YNg-Wq-k4N"/>
+                                    <constraint firstAttribute="trailing" secondItem="n9T-BB-gmV" secondAttribute="trailing" constant="16" id="Yzq-h8-NC5"/>
+                                    <constraint firstItem="n9T-BB-gmV" firstAttribute="leading" secondItem="eC1-SO-STP" secondAttribute="leading" constant="16" id="a3c-i2-Ybl"/>
                                     <constraint firstItem="fR0-zI-zXY" firstAttribute="leading" secondItem="SWa-Lr-mAP" secondAttribute="leading" id="buK-MU-63P"/>
                                     <constraint firstItem="fR0-zI-zXY" firstAttribute="leading" secondItem="eC1-SO-STP" secondAttribute="leading" id="ddh-Da-0LZ"/>
                                     <constraint firstItem="fR0-zI-zXY" firstAttribute="trailing" secondItem="SWa-Lr-mAP" secondAttribute="trailing" id="dlo-Xy-evt"/>
                                     <constraint firstItem="h2D-Jk-Grv" firstAttribute="leading" secondItem="eC1-SO-STP" secondAttribute="leading" constant="16" id="eYV-hj-UNB"/>
                                     <constraint firstAttribute="trailing" secondItem="fR0-zI-zXY" secondAttribute="trailing" id="gS9-wX-fG6"/>
                                     <constraint firstItem="fR0-zI-zXY" firstAttribute="top" secondItem="SWa-Lr-mAP" secondAttribute="top" id="mZh-cc-yTp"/>
-                                    <constraint firstAttribute="trailing" secondItem="BYb-ls-68o" secondAttribute="trailing" constant="16" id="plR-oP-npD"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BYb-ls-68o" secondAttribute="trailing" constant="16" id="plR-oP-npD"/>
                                     <constraint firstItem="fR0-zI-zXY" firstAttribute="bottom" secondItem="SWa-Lr-mAP" secondAttribute="bottom" id="ubH-yE-auK"/>
                                 </constraints>
                             </view>
@@ -116,7 +120,7 @@
                     <connections>
                         <outlet property="backDropImageTopConstraint" destination="B4A-ui-Jrs" id="pwi-8W-7UD"/>
                         <outlet property="backDropImageView" destination="fR0-zI-zXY" id="fmM-wc-zAc"/>
-                        <outlet property="overviewLabel" destination="6eo-ji-hia" id="k1f-SJ-Npa"/>
+                        <outlet property="overviewTextView" destination="n9T-BB-gmV" id="jbJ-zg-E7F"/>
                         <outlet property="posterImageView" destination="LCD-5o-3do" id="gnz-aw-IWV"/>
                         <outlet property="releaseDateLabel" destination="BYb-ls-68o" id="Elm-jv-YEd"/>
                         <outlet property="titleLabel" destination="g4i-2b-BT8" id="PyB-T5-HAY"/>

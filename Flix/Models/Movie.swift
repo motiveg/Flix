@@ -12,17 +12,43 @@ class Movie {
     
     var id: Int
     var title: String?
+    var titleQuery: URL?
     var releaseDate: String?
     var overview: String
     var posterURL: URL?
     var backdropURL: URL?
-    var trailerURL: URL?
     
     init(dictionary: [String: Any]) {
         
         id = dictionary["id"] as? Int ?? -1
         title = dictionary["title"] as? String ?? "No title"
-        releaseDate = dictionary["release_date"] as? String ?? "No release date"
+        let youtubeBase = "https://www.youtube.com"
+        if title != "No title" {
+            let searchQuery = "/results?search_query="
+            let movieTitle = title?.replacingOccurrences(of: " ", with: "+")
+            titleQuery = URL(string: youtubeBase + searchQuery + movieTitle! + "+trailer")
+        } else {
+            titleQuery = URL(string: youtubeBase)
+        }
+        
+        // Format date string
+        let getFormatter = DateFormatter()
+        let formatter = DateFormatter()
+        
+        // Configure the input + output format to parse the date string
+        getFormatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "MM/dd/yyyy"
+        
+        // Configure output format
+        formatter.dateStyle = .long
+        
+        releaseDate = "No release date"
+        if let releaseDateString = dictionary["release_date"] as? String {
+            if let date = getFormatter.date(from: releaseDateString) {
+                releaseDate = formatter.string(from: date)
+            }
+        }
+        
         overview = dictionary["overview"] as? String ?? "No Overview"
         
         // base poster URLs
@@ -47,8 +73,6 @@ class Movie {
             let fullBackdropPath = baseURLString + backdropPath
             backdropURL = URL(string: fullBackdropPath)
         }
-        
-        trailerURL = URL(string: "")
     }
     
     class func movies(dictionaries: [[String: Any]]) -> [Movie] {

@@ -76,13 +76,15 @@ class MovieApiManager {
         task.resume()
     }
     
-    func videoTrailer(movieId: Int, completion: @escaping (URL?, Error?) -> ()) {
+    func videoTrailer(movieId: Int, queryURL: URL, completion: @escaping (URL?, Error?) -> ()) {
         let idString = String(movieId)
         let url = URL(string: MovieApiManager.baseUrl + idString + MovieApiManager.partialVideos + MovieApiKeys.APIKEY)!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let task = session.dataTask(with: request) { (data, response, error) in
             if let data = data {
-                var trailerURL = URL(string: "")
+                
+                // flag for finding url in json
+                var failed = true
                 
                 // attempt to get data dictionary
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
@@ -100,18 +102,36 @@ class MovieApiManager {
                                 let videoKey = firstVideoDictionary["key"] as! String
                                 let youtubeBase = "https://www.youtube.com/watch?v="
                                 let videoURL = URL(string: youtubeBase + videoKey)
-                                trailerURL = videoURL
+                                failed = false
+                                
+                                // successfully retrieved trailer url
+                                completion(videoURL, nil)
                             }
                         }
                     }
                 }
                 
-                completion(trailerURL, nil)
+                if failed {
+                    // error getting trailer url from json
+                    completion(queryURL, TrailerError(msg: "Trailer could not be fetched"))
+                }
             } else {
-                completion(nil, error)
+                // error getting data from query
+                completion(queryURL, error)
             }
         }
         task.resume()
     }
     
+}
+
+public struct TrailerError: Error {
+    let msg: String
+    
+}
+
+extension TrailerError: LocalizedError {
+    public var errorDescription: String? {
+        return NSLocalizedString(msg, comment: "")
+    }
 }

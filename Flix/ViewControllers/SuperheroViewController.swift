@@ -12,12 +12,11 @@ import PKHUD
 // TODO:
 // - double check constraints in horizontal orientation
 // - change needed size and constraints when switching orientation
-// - allow user to select genre
+// - allow user to select genre by touching nav title
 
 class SuperheroViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
     
     var movies: [Movie] = []
     var refreshControl: UIRefreshControl!

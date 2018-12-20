@@ -9,12 +9,14 @@
 import UIKit
 import AlamofireImage
 import PKHUD
+//import DeviceKit
 
 // TODO:
 // - double check constraints in horizontal orientation
 // - change needed size and constraints when switching orientation
 // - increase font size depending on display
 // - add sorting and filtering
+// - touch nav title to change movie query type
 
 class PopularViewController: UIViewController {
     
